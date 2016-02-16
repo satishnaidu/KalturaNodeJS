@@ -1,0 +1,61 @@
+<!doctype html>
+<html ng-app="myKalturaApp">
+
+   <head>
+		
+		 <meta charset="utf-8">
+		 <meta name="author" content="Kaltura API Developer Team" />
+		 <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+		 <title> Kaltura API </title>
+		 <meta name="description" content="Video Gallery with AngularJS and NodeJS">
+		 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+		 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	</head>
+
+
+
+
+<body ng-controller="mainController">
+ 
+<h2>Play Kaltura Videos</h2>
+ <div class="container slider">
+
+
+
+ 	 
+
+ 	 <table>
+ 		 <tr ng-repeat="video in videos">
+   			 <td><img ng-src="{{video.thumbnailUrl}}" ng-click='playVideo()'/></td>
+   			 <td>{{ video.name }}</td>
+   			  <td> {{video.rootEntryId}}</td>
+   			 <td></td>
+   			  <td>views {{video.views}}  </td>
+   			
+
+  		</tr>
+	</table>
+
+ </div>
+
+
+<div>
+     
+
+    <!--<div ng-controller="VideoCtrl">
+        <div id="playerContainer" kaltura-player kaltura-options="config" style="width: 400px; height: 500px;"></div>
+    </div>-->
+
+<div>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+ <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<!-- Include the Kaltura HTML5 library
+<script type='text/javascript' src="http://player.kaltura.com/mwEmbedLoader.php"></script> -->
+
+<script type="text/javascript" src="core.js"></script>
+
+</body>
+</html>
