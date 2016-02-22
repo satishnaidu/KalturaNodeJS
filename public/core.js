@@ -3,16 +3,30 @@ angular.module('myKalturaApp',[])
 
 		$http.get('/api/media')
 			.success(function(data){
-				console.log(data);
-				$scope.videos=data['objects'];
+				var result = data['result'];
+				$scope.videos=result;
 
 			})
 			.error(function(error){
-				console.log('Error: ',error);
+				console.error('Error: ',error);
 			});
 
-		$scope.playVideo = function(){
-			alert("Play back videos currently not working on.");
-		};
+		$http.get('/api/playlist')
+			.success(function(data){
+				var result = data['result'];
+				$scope.playlists=result;
+			})
+			.error(function(error){
+				console.error("Play list error:",error);
+			});
+
+		$http.get('/api/rss/playlist')
+			.success(function(data){
+				var result = data['result'];
+				$scope.syndicationfeeds=result;
+			})
+			.error(function(error){
+				console.error("Play list error:",error);
+			});
 
 	});

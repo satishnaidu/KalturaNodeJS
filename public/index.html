@@ -22,20 +22,59 @@
  <div class="container slider">
 
 
-
- 	 
+ <h3>Play media service </h3>
+ 
+ 	<div ng-if="videos.totalCount!='0'">
+       Total videos: {{videos.totalCount}}
+  </div>
 
  	 <table>
- 		 <tr ng-repeat="video in videos">
-   			 <td><img ng-src="{{video.thumbnailUrl}}" ng-click='playVideo()'/></td>
+ 		 <tr ng-repeat="video in videos['objects']">
+      <td><video width="320" height="240" controls ng-src="{{video.dataUrl}}">
+              Your browser does not support the video tag.
+          </video>
+          </td>
+   			 <td><img ng-src="{{video.thumbnailUrl}}"/></td>
    			 <td>{{ video.name }}</td>
    			  <td> {{video.rootEntryId}}</td>
    			 <td></td>
    			  <td>views {{video.views}}  </td>
-   			
-
-  		</tr>
+   		</tr>
 	</table>
+
+  <h3> Play list service </h3>
+  <span ng-if="playlists.totalCount!=0" class="animate-if">
+       Total videos: {{playlists.totalCount}}
+  </span>
+  <table>
+     <tr ng-repeat="playlist in playlists['objects']">
+         <td><img ng-src="{{playlist.thumbnailUrl}}"/></td>
+         <td>{{ playlist.name }}</td>
+         <td>{{ playlist.description }}</td>
+          <td> {{playlist.rootEntryId}}</td>
+         <td></td>
+          <td>views {{playlist.views}}  </td>
+          <td>plays {{playlist.plays}}  </td>
+      </tr>
+  </table>
+
+   <h3> Syndication feed service </h3>
+
+    
+   <span ng-if="syndicationfeeds.totalCount!=0" class="animate-if">
+        Total videos: {{syndicationfeeds.totalCount}}
+    </span>
+  <table>
+      <tr ng-repeat="sf in syndicationfeeds['objects']">
+         <td><img ng-src="{{sf.thumbnailUrl}}"/></td>
+         <td>{{ sf.name }}</td>
+         <td>{{ sf.description }}</td>
+          <td> {{sf.rootEntryId}}</td>
+         <td></td>
+          <td>views {{sf.views}}  </td>
+          <td>plays {{sf.plays}}  </td>
+      </tr>
+  </table>
 
  </div>
 
