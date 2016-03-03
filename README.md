@@ -1,1 +1,1 @@
-NodeJS application for using open source Kaltura Video API.
+Disney app for displaying videos using Kaltura Video API.

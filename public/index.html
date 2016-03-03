@@ -19,9 +19,53 @@
 <body ng-controller="mainController">
  
 <h2>Play Kaltura Videos</h2>
+
+<form  name="upload_form">
+    <input 
+                type="file" 
+                ngf-select 
+                ng-model="file" 
+                name="file" 
+                ngf-pattern="'video/*'"
+                accept="video/*" 
+                ngf-max-size="100MB" 
+                />
+            Image thumbnail: <img style="width:100px;" ng-show="!!file" ngf-thumbnail="file || '/thumb.jpg'"/>
+            <i ng-show="upload_form.file.$error.required">*required</i><br>
+            <i ng-show="upload_form.file.$error.maxSize">File too large 
+            {{up.file.size / 1000000|number:1}}MB: max 100M</i>
+           <!--  Multiple files
+            <div class="button" ngf-select ng-model="up.files" ngf-multiple="true">Select</div>
+            Drop files: <div ngf-drop ng-model="up.files" class="drop-box">Drop</div> -->
+            <button type="submit" ng-click="submit()">submit</button>
+            <p>{{progress}}</p>
+
+</form>
+
+
  <div class="container slider">
 
+<h3>Live Stream service </h3>
+ 
+  <div ng-if="liveStreams.totalCount!='0'">
+       Total Livestreams: {{liveStreams.totalCount}}
+  </div>
 
+   <table>
+     <tr ng-repeat="liveStreams in liveStream['objects']">
+      <td><video width="320" height="240" controls ng-src="{{liveStreams.dataUrl}}">
+              Your browser does not support the video tag.
+          </video>
+          </td>
+         <td><img ng-src="{{liveStreams.thumbnailUrl}}"/></td>
+         <td>{{ liveStreams.name }}</td>
+          <td> {{liveStreams.rootEntryId}}</td>
+         <td></td>
+          <td>views {{liveStreams.views}}  </td>
+      </tr>
+  </table>
+
+<!--
  <h3>Play media service </h3>
  
  	<div ng-if="videos.totalCount!='0'">
@@ -77,7 +121,7 @@
   </table>
 
  </div>
-
+-->
 
 <div>
      
@@ -95,6 +139,8 @@
 <script type='text/javascript' src="http://player.kaltura.com/mwEmbedLoader.php"></script> -->
 
 <script type="text/javascript" src="core.js"></script>
+<script type="text/javascript" src="ng-file-upload.js"></script>
+
 
 </body>
 </html>
